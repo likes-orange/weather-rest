@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  context-path: /api
+
+app:
+  openweather:
+    app-id: 6f5f3bd76b0c657b218e8527858ef93d
+    
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true      
+
+liquibase:
+  change-log: classpath:/database/db.table.xml

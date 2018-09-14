@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="gtueres" id="18.9-01" failOnError="true"
+		runOnChange="true">
+		<comment>Create weather_log table.</comment>
+		<createTable tableName="weather_log">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="pk_weather_log" />
+			</column>
+			<column name="response_id" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="location" type="VARCHAR(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="actual_weather" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="temperature" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="dtime_inserted" type="TIMESTAMP WITH TIME ZONE" defaultValue="now()">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet author="gtueres" id="18.9-02" failOnError="true"
+		runOnChange="true">
+		<comment>Add unique constraint for response_id of weather_log.</comment>
+		<addUniqueConstraint columnNames="response_id" tableName="weather_log"/>
+	</changeSet>
+
+</databaseChangeLog>
